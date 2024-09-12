@@ -4,7 +4,7 @@ this is a simple example of how to deploy a Dify project on Azure.
 ## Topology
 ![Topology](./images/image.png)
 
-### Before you provision Dify, please check and set the variables in dev-variables.tfvars file.
+### 在配置 Dify 之前，请检查并设置 dev-variables.tfvars 文件中的变量。
 
 在 dev-variables.tfvars 文件中，定义了6个变量：
 
@@ -44,7 +44,7 @@ sp-tenant-id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 - 注意：本repo默认在Windows下运行Terraform，如果运行Terraform使用Mac或Linux的话，需要在
 DIFYONAZURE/modules/dify/main.tf文件中修改chat的路径格式如下：
 
-chart = "./helm-release/dify-helm/charts/dify"
+#### chart = "./helm-release/dify-helm/charts/dify"
 
 ## Deploy
 ```bash
