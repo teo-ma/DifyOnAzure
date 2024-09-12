@@ -8,12 +8,13 @@ Before you provision Dify, please check and set the variables in dev-variables.t
 
 在 dev-variables.tfvars 文件中，定义了6个变量：
 
-1.sp-subscription-id Azure订阅ID
-2.sp-client-id：这是服务主体的客户端 ID。它是一个唯一标识符，用于标识特定的服务主体。
-3.sp-client-secret：这是服务主体的客户端密钥。它类似于密码，用于验证服务主体的身份。这个值应当保密，不应公开。
-4.sp-tenant-id：这是租户 ID。它标识了 Azure Active Directory (AAD) 中的特定租户，通常用于多租户环境中区分不同的组织或用户组。
-5.name：Dify平台的名字，用于创建或定义多个服务的名字（比如Azure资源组，Azure Private DNS zone等），需要全球唯一。
-6.filename ：指定您的本地电脑中存储AKS凭据文件kubeconfig的路径
+- 1.sp-subscription-id Azure订阅ID
+- 2.sp-client-id：这是服务主体的客户端 ID。它是一个唯一标识符，用于标识特定的服务主体。
+- 3.sp-client-secret：这是服务主体的客户端密钥。它类似于密码，用于验证服务主体的身份。这个值应当保密，不应公开。
+- 4.sp-tenant-id：这是租户 ID。它标识了 Azure Active Directory (AAD) 中的特定租户，通常用于多租户环境中区分不同的组织或用户组。
+- 5.name：Dify平台的名字，用于创建或定义多个服务的名字（比如Azure资源组，Azure Private DNS zone等），需要全球唯一。
+- 6.filename ：指定您的本地电脑中存储AKS凭据文件kubeconfig的路径
+  
 ```bash
 az login
 az ad sp create-for-rbac --name <your-service-principal-name> --role Owner --scopes /subscriptions/<your-subscription-id>
