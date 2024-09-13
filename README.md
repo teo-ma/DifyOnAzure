@@ -1,6 +1,7 @@
 # Dify on Azure
 ## Overview
-this is a simple example of how to deploy a Dify project on Azure.
+- 这是一个如何在 Azure 上部署 Dify 项目的简单示例。
+- 部署之前也可以体验一下这个部署好的例子体验一下：http://dify-gpschina.eastus2.cloudapp.azure.com/ 登陆用户名/密码(无编辑权限)：dify2@gmail.com/dify1234
 ## Topology
 ![Topology](./images/image.png)
 
