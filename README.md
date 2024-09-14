@@ -5,7 +5,79 @@
 ## Topology
 ![Topology](./images/image.png)
 
-### 在配置 Dify 之前，请检查并设置 dev-variables.tfvars 文件中的变量。
+
+
+
+# Dify on Azure部署指南
+
+## 前提条件
+- 操作系统管理员权限
+- 已安装Terraform，若没有安装的话，请参考Windows上安装步骤Terraform进行安装。
+- 已安装Azure CLI，若没有安装的话，请参考Windows上安装Azure CLI指南进行安装。
+
+## Windows上安装步骤Terraform（如已安装可以略过该步骤）
+
+### 1. 下载Terraform
+1. 打开浏览器，访问[Terraform下载页面](https://www.terraform.io/downloads.html)。
+2. 在页面中找到适用于Windows的版本，点击下载链接。
+
+### 2. 解压文件
+1. 下载完成后，找到下载的ZIP文件（例如：`terraform_1.0.0_windows_amd64.zip`）。
+2. 右键点击ZIP文件，选择“解压到当前文件夹”或使用您喜欢的解压工具解压文件。
+
+### 3. 将Terraform添加到系统路径
+1. 将解压后的`terraform.exe`文件移动到您希望存放的目录，例如：`C:\terraform`。
+2. 打开“控制面板”，选择“系统和安全”，然后选择“系统”。
+3. 点击左侧的“高级系统设置”。
+4. 在“系统属性”窗口中，点击“环境变量”按钮。
+5. 在“环境变量”窗口中，找到“系统变量”部分，选择`Path`变量，然后点击“编辑”。
+6. 在“编辑环境变量”窗口中，点击“新建”，然后输入`C:\terraform`（即`terraform.exe`所在的目录）。
+7. 点击“确定”保存更改。
+
+### 4. 验证安装
+1. 打开命令提示符（按`Win + R`，输入`cmd`，然后按回车）。
+2. 在命令提示符中输入以下命令并按回车：
+   ```sh
+   terraform -v
+   ```
+3. 如果安装成功，您将看到Terraform的版本信息输出。
+
+
+
+## Windows上安装Azure CLI指南（如已安装可以略过该步骤）
+
+### 1. 下载Azure CLI安装程序
+1. 打开浏览器，访问[Azure CLI下载页面](https://docs.microsoft.com/cli/azure/install-azure-cli-windows?tabs=azure-cli)。
+2. 在页面中找到适用于Windows的安装程序，点击下载链接。
+
+### 2. 运行安装程序
+1. 下载完成后，找到下载的安装程序文件（例如：`AzureCLI.msi`）。
+2. 双击安装程序文件，启动安装向导。
+3. 按照安装向导的提示进行安装，接受许可协议并选择默认安装选项。
+
+### 3. 验证安装
+1. 安装完成后，打开命令提示符或PowerShell。
+2. 输入以下命令以验证Azure CLI是否安装成功：
+    ```sh
+    az --version
+    ```
+3. 如果安装成功，您将看到Azure CLI的版本信息。
+
+### 4. 登录到Azure
+1. 在命令提示符或PowerShell中，输入以下命令以登录到您的Azure账户：
+    ```sh
+    az login
+    ```
+2. 按照提示在浏览器中完成登录过程。
+
+
+
+现在，您已经成功在Windows上安装了Azure CLI，并可以开始使用它来管理您的Azure资源。
+
+
+
+
+## 在配置 Dify 之前，请检查并设置 dev-variables.tfvars 文件中的变量。
 
 在 dev-variables.tfvars 文件中，定义了6个变量：
 
@@ -47,9 +119,32 @@ DIFYONAZURE/modules/dify/main.tf文件中修改chat的路径格式如下：
 
 #### chart = "./helm-release/dify-helm/charts/dify"
 
-## Deploy
+## 使用terraform将dify部署到Azure
+- 通过运行“terraform init”初始化 Terraform。
+
 ```bash
+
 terraform init
+
+```
+- 通过运行以下terraform plan为开发环境生成计划。
+```bash
+
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
+
+```
+- 通过运行以下“terraform apply命令应用生成的计划。
+```bash
+
 terraform apply "dev-plan"
 ```
+
+## 部署后的配置
+- 现在，您已经成功在Azure上部署了Dify，接下来登陆Azure门户，从刚刚创建的资源组中找到Azure Kubernetes Service集群，并打开它。
+![AKS](./images/aks.png)
+- 按图示找到您在azure上部署的Dify的公网地址。
+![IP](./images/ip-address.png)
+- 点击ingress的IP 地址，将会在浏览器中显示Dify。第一次使用请设置账户信息
+![dify-logon](./images/dify-logon.png)
+- 登陆后可以开始使用Dify了！
+![dify-ui](./images/dify-ui.png)
