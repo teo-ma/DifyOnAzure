@@ -18,57 +18,57 @@
 ## Windows上安装步骤Terraform（如已安装可以略过该步骤）
 
 ### 1. 下载Terraform
-1. 打开浏览器，访问[Terraform下载页面](https://www.terraform.io/downloads.html)。
-2. 在页面中找到适用于Windows的版本，点击下载链接。
+- a. 打开浏览器，访问[Terraform下载页面](https://www.terraform.io/downloads.html)。
+- b. 在页面中找到适用于Windows的版本，点击下载链接。
 
 ### 2. 解压文件
-1. 下载完成后，找到下载的ZIP文件（例如：`terraform_1.0.0_windows_amd64.zip`）。
-2. 右键点击ZIP文件，选择“解压到当前文件夹”或使用您喜欢的解压工具解压文件。
+- a. 下载完成后，找到下载的ZIP文件（例如：`terraform_1.0.0_windows_amd64.zip`）。
+- b. 右键点击ZIP文件，选择“解压到当前文件夹”或使用您喜欢的解压工具解压文件。
 
 ### 3. 将Terraform添加到系统路径
-1. 将解压后的`terraform.exe`文件移动到您希望存放的目录，例如：`C:\terraform`。
-2. 打开“控制面板”，选择“系统和安全”，然后选择“系统”。
-3. 点击左侧的“高级系统设置”。
-4. 在“系统属性”窗口中，点击“环境变量”按钮。
-5. 在“环境变量”窗口中，找到“系统变量”部分，选择`Path`变量，然后点击“编辑”。
-6. 在“编辑环境变量”窗口中，点击“新建”，然后输入`C:\terraform`（即`terraform.exe`所在的目录）。
-7. 点击“确定”保存更改。
+- a. 将解压后的`terraform.exe`文件移动到您希望存放的目录，例如：`C:\terraform`。
+- b. 打开“控制面板”，选择“系统和安全”，然后选择“系统”。
+- c. 点击左侧的“高级系统设置”。
+- d. 在“系统属性”窗口中，点击“环境变量”按钮。
+- e. 在“环境变量”窗口中，找到“系统变量”部分，选择`Path`变量，然后点击“编辑”。
+- f. 在“编辑环境变量”窗口中，点击“新建”，然后输入`C:\terraform`（即`terraform.exe`所在的目录）。
+- g. 点击“确定”保存更改。
 
 ### 4. 验证安装
-1. 打开命令提示符（按`Win + R`，输入`cmd`，然后按回车）。
-2. 在命令提示符中输入以下命令并按回车：
+- a. 打开命令提示符（按`Win + R`，输入`cmd`，然后按回车）。
+- b. 在命令提示符中输入以下命令并按回车：
    ```sh
    terraform -v
    ```
-3. 如果安装成功，您将看到Terraform的版本信息输出。
+- c. 如果安装成功，您将看到Terraform的版本信息输出。
 
 
 
 ## Windows上安装Azure CLI指南（如已安装可以略过该步骤）
 
 ### 1. 下载Azure CLI安装程序
-1. 打开浏览器，访问[Azure CLI下载页面](https://docs.microsoft.com/cli/azure/install-azure-cli-windows?tabs=azure-cli)。
-2. 在页面中找到适用于Windows的安装程序，点击下载链接。
+- a. 打开浏览器，访问[Azure CLI下载页面](https://docs.microsoft.com/cli/azure/install-azure-cli-windows?tabs=azure-cli)。
+- b. 在页面中找到适用于Windows的安装程序，点击下载链接。
 
 ### 2. 运行安装程序
-1. 下载完成后，找到下载的安装程序文件（例如：`AzureCLI.msi`）。
-2. 双击安装程序文件，启动安装向导。
-3. 按照安装向导的提示进行安装，接受许可协议并选择默认安装选项。
+- a. 下载完成后，找到下载的安装程序文件（例如：`AzureCLI.msi`）。
+- b. 双击安装程序文件，启动安装向导。
+- c. 按照安装向导的提示进行安装，接受许可协议并选择默认安装选项。
 
 ### 3. 验证安装
-1. 安装完成后，打开命令行工具。
-2. 输入以下命令以验证Azure CLI是否安装成功：
+- a. 安装完成后，打开命令行工具。
+- b. 输入以下命令以验证Azure CLI是否安装成功：
     ```sh
     az --version
     ```
-3. 如果安装成功，您将看到Azure CLI的版本信息。
+- c. 如果安装成功，您将看到Azure CLI的版本信息。
 
 ### 4. 登录到Azure
-1. 在命令提示符或PowerShell中，输入以下命令以登录到您的Azure账户：
+- a. 在命令提示符或PowerShell中，输入以下命令以登录到您的Azure账户：
     ```sh
     az login
     ```
-2. 按照提示在浏览器中完成登录过程。
+- b. 按照提示在浏览器中完成登录过程。
 
 
 
@@ -87,7 +87,7 @@
 - sp-tenant-id：这是租户 ID。它标识了 Azure Active Directory (AAD) 中的特定租户，通常用于多租户环境中区分不同的组织或用户组。
 - name：Dify平台的名字，用于创建或定义多个服务的名字（比如Azure资源组，Azure Private DNS zone等），需要全球唯一。
 - filename ：指定您的本地电脑中存储AKS凭据文件kubeconfig的路径
-  
+### 1.  执行下列命令，创建服务主体（service principal），根据您的azure环境修改命令中的参数
 ```bash
 az login
 az ad sp create-for-rbac --name <your-service-principal-name> --role Owner --scopes /subscriptions/<your-subscription-id>
@@ -96,7 +96,7 @@ az ad sp create-for-rbac --name <your-service-principal-name> --role Owner --sco
 
 ```
 
-### 执行上述命令后，你将获得一个 JSON 响应，其中包含 appId（即 sp-client-id）、password（即 sp-client-secret）和 tenant（即 sp-tenant-id）。
+### 2.执行上述命令后，你将获得一个 JSON 响应，其中包含 appId（即 sp-client-id）、password（即 sp-client-secret）和 tenant（即 sp-tenant-id）。
 
 示例输出：
 ```bash
@@ -108,43 +108,41 @@ az ad sp create-for-rbac --name <your-service-principal-name> --role Owner --sco
   "tenant": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 }
 ```
-### 将这些值填入你的 dev-variables.tfvars 文件中：（appId即sp-client-id，password即sp-client-secret，tenant即sp-tenant-id）
+### 3.将这些值填入你的 dev-variables.tfvars 文件中：（appId即sp-client-id，password即sp-client-secret，tenant即sp-tenant-id）
 ```bash
 sp-client-id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 sp-client-secret = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 sp-tenant-id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
-- 注意：本repo默认在Windows下运行Terraform，如果运行Terraform使用Mac或Linux的话，需要在
-DIFYONAZURE/modules/dify/main.tf文件中修改chat的路径格式如下：
-
-#### chart = "./helm-release/dify-helm/charts/dify"
+- **注意：本repo默认在Windows下运行Terraform，如果运行Terraform使用Mac或Linux的话，需要在
+DIFYONAZURE/modules/dify/main.tf文件中修改chat的路径格式如下：chart = "./helm-release/dify-helm/charts/dify"**
 
 ## 使用terraform将dify部署到Azure
-- 通过运行“terraform init”初始化 Terraform。
+- 通过运行“terraform init”初始化 **Terraform**。
 
 ```bash
 
 terraform init
 
 ```
-- 通过运行以下terraform plan为开发环境生成计划。
+- 通过运行以下**terraform plan**为开发环境生成计划。
 ```bash
 
 terraform plan -out=dev-plan -var-file="./environments/dev-variables.tfvars"
 
 ```
-- 通过运行以下“terraform apply命令应用生成的计划。
+- 通过运行以下**terraform apply**命令应用生成的计划。
 ```bash
 
 terraform apply "dev-plan"
 ```
 
 ## 部署后的配置
-- 现在，您已经成功在Azure上部署了Dify，接下来登陆Azure门户，从刚刚创建的资源组中找到Azure Kubernetes Service集群，并打开它。
+- 1.现在，您已经成功在Azure上部署了Dify，接下来登陆Azure门户，从刚刚创建的资源组中找到Azure Kubernetes Service集群，并打开它。
 ![AKS](./images/aks.png)
-- 按图示找到您在azure上部署的Dify的公网地址。
+- 2.按图示找到您在azure上部署的Dify的公网地址。
 ![IP](./images/ip-address.png)
-- 点击ingress的IP 地址，将会在浏览器中显示Dify。第一次使用请设置账户信息
+- 3.点击ingress的IP 地址，将会在浏览器中显示Dify。第一次使用请设置账户信息
 ![dify-logon](./images/dify-logon.png)
-- 登陆后可以开始使用Dify了！
+- 4.登陆后可以开始使用Dify了！
 ![dify-ui](./images/dify-ui.png)
