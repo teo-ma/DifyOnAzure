@@ -87,7 +87,7 @@
 - sp-tenant-id：这是租户 ID。它标识了 Azure Active Directory (AAD) 中的特定租户，通常用于多租户环境中区分不同的组织或用户组。
 - name：Dify平台的名字，用于创建或定义多个服务的名字（比如Azure资源组，Azure Private DNS zone等），需要全球唯一。
 - filename ：指定您的本地电脑中存储AKS凭据文件kubeconfig的路径
-  
+### 1.  执行下列命令，创建服务主体（service principal），根据您的azure环境修改命令中的参数
 ```bash
 az login
 az ad sp create-for-rbac --name <your-service-principal-name> --role Owner --scopes /subscriptions/<your-subscription-id>
@@ -96,7 +96,7 @@ az ad sp create-for-rbac --name <your-service-principal-name> --role Owner --sco
 
 ```
 
-### 执行上述命令后，你将获得一个 JSON 响应，其中包含 appId（即 sp-client-id）、password（即 sp-client-secret）和 tenant（即 sp-tenant-id）。
+### 2.执行上述命令后，你将获得一个 JSON 响应，其中包含 appId（即 sp-client-id）、password（即 sp-client-secret）和 tenant（即 sp-tenant-id）。
 
 示例输出：
 ```bash
@@ -108,21 +108,23 @@ az ad sp create-for-rbac --name <your-service-principal-name> --role Owner --sco
   "tenant": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 }
 ```
-### 将这些值填入你的 dev-variables.tfvars 文件中：（appId即sp-client-id，password即sp-client-secret，tenant即sp-tenant-id）
+### 3.将这些值填入你的 dev-variables.tfvars 文件中：（appId即sp-client-id，password即sp-client-secret，tenant即sp-tenant-id）
 ```bash
 sp-client-id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 sp-client-secret = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 sp-tenant-id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
-- 注意：本repo默认在Windows下运行Terraform，如果运行Terraform使用Mac或Linux的话，需要在
-DIFYONAZURE/modules/dify/main.tf文件中修改chat的路径格式如下：
+- **注意：本repo默认在Windows下运行Terraform，如果运行Terraform使用Mac或Linux的话，需要在
+DIFYONAZURE/modules/dify/main.tf文件中修改chat的路径格式如下：chart = "./helm-release/dify-helm/charts/dify"**
 
-#### chart = "./helm-release/dify-helm/charts/dify"
+## 使用terraform将dify部署到Azure
+- 通过运行“terraform init”初始化 **Terraform**。
 
 ## 使用terraform将dify部署到Azure
 - 通过运行“terraform init”初始化 Terraform。
 
 ```bash
+
 
 terraform init
 
